@@ -33,7 +33,7 @@ equilibriumPointVector = [U1_bar, U2_bar, IL_bar];
 J = jacobian([f1, f2, f3], [U1, U2, IL]);
 
 U0_val = 12;
-I0_val = 2.86e-3;
+I0_val = 2.9e-3;
 
 % substitute the equilibrium expressions into the Jacobian
 Ji_sym = subs(J, [U1, U2, IL], [U1_bar, U2_bar, IL_bar])
@@ -42,4 +42,17 @@ Ji_sym = subs(J, [U1, U2, IL], [U1_bar, U2_bar, IL_bar])
 Ji_wp = subs(Ji_sym, [U0, I0], [U0_val, I0_val])
 
 % compute eigenvalues
-eigenvalues = eig(Ji_wp)
+eigenvalues = eig(Ji_wp);
+
+% numerisch auswerten (double-Genauigkeit)
+lambda_num = double(eigenvalues);
+
+% Real- und Imaginärteil getrennt
+Re_lambda = real(lambda_num);
+Im_lambda = imag(lambda_num);
+
+% Ausgabe mit begrenzter Anzahl von Nachkommastellen
+fprintf('\neigenvalues =\n\n');
+for k = 1:length(lambda_num)
+    fprintf('%.2f +  %.2fi\n', Re_lambda(k), Im_lambda(k));
+end
