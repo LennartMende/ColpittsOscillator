@@ -48,8 +48,8 @@ while true
         break;
     end
     Lf = jacobian(Lf, x) * f_ea % x = [U1; U2; IL], Lf = IL/C2
-    Lf_r(r+2) = Lf_h
     Lf_h = Lf
+    Lf_r(r+2) = Lf_h
     r = r + 1
 end
 
