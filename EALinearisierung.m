@@ -45,6 +45,10 @@ Lf_r(1) = Lf_h
 while true
     LgLf = jacobian(Lf, x) * g_ea_U0 % x = [U1; U2; IL]
     if LgLf ~= 0
+        % vermutlich notwendig, um L_f^r h anstelle von L_f^{(r-1)} h zu
+        % erhalten
+        Lf = jacobian(Lf, x) * f_ea
+        %
         break;
     end
     Lf = jacobian(Lf, x) * f_ea % x = [U1; U2; IL], Lf = IL/C2
