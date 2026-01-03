@@ -63,9 +63,9 @@ r = r + 1
 disp(Lf_r)
 
 syms v
-L_nom = v - Lf_h; % letzte Lf
-L_denom = LgLf;
-L = L_nom / L_denom;
+L_nom = v - Lf_h % letzte Lf
+L_denom = LgLf
+L = L_nom * pinv(L_denom)
 
-syms U2_ref Kp
-v = Kp * (U2_ref - U2);
+%syms U2_ref Kp
+%v = Kp * (U2_ref - U2);
