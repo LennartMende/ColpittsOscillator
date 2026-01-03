@@ -32,26 +32,30 @@ g_ea_I0 = [
     -I0/C2;
     0;
 ]
-h_ea = IL %for y = xi set h_ea at position i to 1
+h_ea = U2 %for y = xi set h_ea at position i to 1
 
 %Lie-Ableitungen berechnen
 Lf = h_ea;
+Lf_h = Lf;
 r = 0;
 
-L_fh = Lf;
+Lf_r = sym(zeros(10,1))
+Lf_r(1) = Lf_h
 
 while true
-    LgLf = jacobian(Lf, x) * g_ea_I0;
+    LgLf = jacobian(Lf, x) * g_ea_U0 % x = [U1; U2; IL]
     if LgLf ~= 0
         break;
     end
-    Lf = jacobian(Lf, x) * f_ea;
-    Lf_h =Lf;
-    r = r + 1;
+    Lf = jacobian(Lf, x) * f_ea % x = [U1; U2; IL], Lf = IL/C2
+    Lf_r(r+2) = Lf_h
+    Lf_h = Lf
+    r = r + 1
 end
 
 r = r + 1
 
+disp(Lf_r)
 
 syms v
 L_nom = v - Lf_h;  % letzte Lf
