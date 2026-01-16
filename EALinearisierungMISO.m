@@ -33,7 +33,7 @@ g_ea_I0 = [
     0;
 ]
 h_ea = U2 %for y = xi set h_ea at position i to 1
-
+h_ea_simulink = gradient(h_ea, x)
 %Lie-Ableitungen berechnen
 Lf = h_ea;
 Lf_h = Lf;
@@ -67,7 +67,9 @@ disp(Lf_r)
 syms v
 L_nom = v - Lf_h % letzte Lf
 L_denom = LgLf
+
 L = L_nom * pinv(L_denom)
+L_pinv = pinv(L_denom)
 
 alpha = LgLf
 beta = Lf_h
@@ -98,4 +100,4 @@ C(1) = 1
 
 p = [-3, -2+1j, -2-1j];
 
-K = place(A, B, p);
+K = place(A, B, p)
