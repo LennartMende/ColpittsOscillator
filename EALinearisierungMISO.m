@@ -95,3 +95,7 @@ C(1) = 1;
 
 %syms U2_ref Kp
 %v = Kp * (U2_ref - U2);
+
+p = [-3, -2+1j, -2-1j];
+
+K = place(A, B, p);
