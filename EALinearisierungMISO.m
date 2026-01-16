@@ -83,15 +83,15 @@ for i=1:r
         end
     end
 end
-
+A
 %%Oder:
 %A = diag(ones(r-1,1), 1);
 
 B = zeros(r,1);
 B(r) = 1
 
-C = zeros(1,r)
-C(1) = 1;
+C = zeros(1,r);
+C(1) = 1
 
 %syms U2_ref Kp
 %v = Kp * (U2_ref - U2);
