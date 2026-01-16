@@ -42,6 +42,7 @@ r = 0;
 Lf_r = sym(zeros(10,1))
 Lf_r(1) = Lf_h
 
+
 while true
     LgLf = jacobian(Lf, x) * g_ea % x = [U1; U2; IL]
     if LgLf ~= 0
@@ -60,12 +61,37 @@ end
 
 r = r + 1
 
+phi = Lf_r
 disp(Lf_r)
 
 syms v
 L_nom = v - Lf_h % letzte Lf
 L_denom = LgLf
 L = L_nom * pinv(L_denom)
+
+alpha = LgLf
+beta = Lf_h
+
+
+
+%%%A-, B-, und C-Matrix
+A = zeros(r);
+for i=1:r
+    for j=1:r
+        if j == i+1
+            A(i,j) = 1;
+        end
+    end
+end
+
+%%Oder:
+%A = diag(ones(r-1,1), 1);
+
+B = zeros(r,1);
+B(r) = 1
+
+C = zeros(1,r)
+C(1) = 1;
 
 %syms U2_ref Kp
 %v = Kp * (U2_ref - U2);
