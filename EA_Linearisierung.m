@@ -22,7 +22,7 @@ x = [x1, x2, x3];
 % Entwurf der E/A-Linearisierung:
 %Zerlegung in System-, Ausgangs- und Eingangswirkung
 f_ea = [
-    -I_S*exp(-x2/U_T)/C1 + x3/C1;
+    -IS*exp(-x2/UT)/C1 + x3/C1;
     x3/C2;
     -x1/L - x2/L - R*x3/L
 ]
