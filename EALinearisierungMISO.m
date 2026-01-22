@@ -68,6 +68,8 @@ syms v
 L_nom = v - Lf_h % letzte Lf
 L_denom = LgLf
 
+
+
 L = L_nom * pinv(L_denom)
 L_pinv = pinv(L_denom)
 
@@ -101,3 +103,8 @@ C(1) = 1
 p = [-3, -2+1j, -2-1j];
 
 K = place(A, B, p)
+
+disp(LgLf)
+disp(Lf_h)
+LfLg_pinv = pinv(LgLf)
+disp(LfLg_pinv);
