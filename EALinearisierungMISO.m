@@ -50,7 +50,6 @@ while true
         % erhalten
         Lf = jacobian(Lf, x) * f_ea
         Lf_h = Lf
-        %
         break;
     end
     Lf = jacobian(Lf, x) * f_ea % x = [U1; U2; IL], Lf = IL/C2
@@ -122,4 +121,5 @@ K = place(A, B, p)
 disp(LgLf)
 disp(Lf_h)
 LfLg_pinv = pinv(LgLf)
+
 disp(LfLg_pinv);
